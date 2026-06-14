@@ -192,7 +192,7 @@ def analisar_dados_pandas_service(id_atleta: int, id_teste: int):
     if not relatorio or not relatorio["pontos_evolucao"]:
         return {
             "mensagem": "Sem dados suficientes para análise estatística.",
-            "total_tentativas": 0
+            "total_tentativas_analisadas": 0
         }
         
     # Carrega a lista de tentativas em um Pandas DataFrame

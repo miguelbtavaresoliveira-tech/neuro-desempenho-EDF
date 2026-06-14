@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from database import get_db_connection
 from controllers.atletaController import router as atleta_router
 from controllers.testeController import router as teste_router
@@ -10,6 +11,15 @@ app = FastAPI(
     title="API NeuroSportsTech (EsporteNeural)",
     description="API de monitoramento cognitivo de atletas e análise de dados para ciência do esporte",
     version="1.0.0"
+)
+
+# Configura as permissões de CORS para que o React (frontend) consiga se conectar à API
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permite qualquer origem no desenvolvimento
+    allow_credentials=True,
+    allow_methods=["*"],  # Permite todos os métodos (GET, POST, etc.)
+    allow_headers=["*"],  # Permite todos os cabeçalhos HTTP
 )
 
 # Registra os routers das entidades do sistema
